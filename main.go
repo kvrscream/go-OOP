@@ -32,8 +32,32 @@ func main() {
 	contaDaCharlotte.Depositar(100)
 
 	contaDoThor.Transferir(200, &contaDaCharlotte)
+	PagarBoleto(&contaDoThor, 100)
 
 	fmt.Println(contaDoThor.Extrato())
 	fmt.Println(contaDaCharlotte.Extrato())
 
+	contaFelipe := contas.ContaPoupanca{
+		Titular: clientes.Titular{
+			Nome:      "Felipe",
+			CPF:       "0000000000",
+			Profissao: "Programador",
+		},
+		NumeroAgencia: 9,
+		Operacao:      51,
+		NumeroConta:   9090,
+	}
+
+	contaFelipe.Depositar(2000)
+	PagarBoleto(&contaFelipe, 300)
+	fmt.Println(contaFelipe)
+
+}
+
+func PagarBoleto(conta verificarConta, valorBoleto float64) {
+	conta.Sacar(valorBoleto)
+}
+
+type verificarConta interface {
+	Sacar(valor float64) string
 }

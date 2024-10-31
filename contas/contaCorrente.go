@@ -3,10 +3,9 @@ package contas
 import "banco/clientes"
 
 type ContaCorrente struct { // struct ou estrutura seria o mesmo conceito de model
-	Titular       clientes.Titular // Composição! No Go não temos eranças
-	NumeroAgencia int
-	NumeroConta   int
-	saldo         float64
+	Titular                    clientes.Titular // Composição! No Go não temos eranças
+	NumeroAgencia, NumeroConta int
+	saldo                      float64
 }
 
 func (c *ContaCorrente) Sacar(valorSaque float64) string { // O ponteiro antes do nome da função permite chamar direto da struct
